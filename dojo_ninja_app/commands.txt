@@ -1,0 +1,82 @@
+
+(djangoPy3Env) C:\Users\Nathan\Desktop\python_stack\django\django_orm\dojo_ninja_proj>python manage.py makemigrations
+Migrations for 'dojo_ninja_app':
+  dojo_ninja_app\migrations\0001_initial.py
+    - Create model Dojo
+    - Create model Ninja
+
+(djangoPy3Env) C:\Users\Nathan\Desktop\python_stack\django\django_orm\dojo_ninja_proj>migrate
+'migrate' is not recognized as an internal or external command,
+operable program or batch file.
+
+(djangoPy3Env) C:\Users\Nathan\Desktop\python_stack\django\django_orm\dojo_ninja_proj>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, dojo_ninja_app, sessions
+Running migrations:
+  Applying dojo_ninja_app.0001_initial... OK
+
+(djangoPy3Env) C:\Users\Nathan\Desktop\python_stack\django\django_orm\dojo_ninja_proj>python manage.py shell
+Python 3.9.2 (tags/v3.9.2:1a79785, Feb 19 2021, 13:44:55) [MSC v.1928 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from dojo_ninja_app.models import Dojo, Ninja
+>>> Dojo.objects.all()
+<QuerySet []>
+>>> Ninja.objects.all()
+<QuerySet []>
+>>> new_dojo = Dojo.objects.create(name = "TexasDojo", city = "Dallas", state = "Texas")
+>>> new_dojo2 = Dojo.objects.create(name = "PeonDojo", city = "Peonopolis", state = "Peon")
+>>> new_dojo3 = Dojo.objects.create(name = "SmegDojo", city = "Smegopolis", state = "Smegasota")
+>>> new_dojo.delete()
+(1, {'dojo_ninja_app.Ninja': 0, 'dojo_ninja_app.Dojo': 1})
+>>> new_dojo2.delete()
+(1, {'dojo_ninja_app.Ninja': 0, 'dojo_ninja_app.Dojo': 1})
+>>> new_dojo3.delete()
+(1, {'dojo_ninja_app.Ninja': 0, 'dojo_ninja_app.Dojo': 1})
+>>> new_dojo = Dojo.objects.create(name = "TexasDojo", city = "Dallas", state = "Texas")
+>>> new_dojo2 = Dojo.objects.create(name = "PeonDojo", city = "Peonopolis", state = "Peon")
+>>> new_dojo3 = Dojo.objects.create(name = "SmegDojo", city = "Smegopolis", state = "Smegasota")
+>>> ninja1 = Ninja.objects.create(dojo = new_dojo, first_name = "Nathan", last_name = "Bludworth)
+  File "<console>", line 1
+    ninja1 = Ninja.objects.create(dojo = new_dojo, first_name = "Nathan", last_name = "Bludworth)
+                                                                                                 ^
+SyntaxError: EOL while scanning string literal
+>>> ninja1 = Ninja.objects.create(dojo = new_dojo, first_name = "Nathan", last_name = "Bludworth")
+>>> ninja2 = Ninja.objects.create(dojo = new_dojo, first_name = "Skylar", last_name = "Rivas")
+>>> ninja3 = Ninja.objects.create(dojo = new_dojo, first_name = "Mark", last_name = "Echols")
+>>> ninja4 = Ninja.objects.create(dojo = new_dojo2, first_name = "Peonicle", last_name = "Green")
+>>> ninja5 = Ninja.objects.create(dojo = new_dojo2, first_name = "Toamie", last_name = "Wheelour")
+>>> ninja6 = Ninja.objects.create(dojo = new_dojo2, first_name = "Caloom", last_name = "Welsh")
+>>> ninja7 = Ninja.objects.create(dojo = new_dojo3, first_name = "Jaggar", last_name = "McCollom")
+>>> ninja8 = Ninja.objects.create(dojo = new_dojo3, first_name = "Juan", last_name = "Vides")
+>>> ninja9 = Ninja.objects.create(dojo = new_dojo3, first_name = "Becken", last_name = "Torres")
+>>> Ninja.objects.filter(dojo = new_dojo)
+<QuerySet [<Ninja: Ninja object (1)>, <Ninja: Ninja object (2)>, <Ninja: Ninja object (3)>]>
+>>> Ninja.objects.filter.values(dojo = new_dojo)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'function' object has no attribute 'values'
+>>> Ninja.objects.filter.values(dojo = new_dojo3)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'function' object has no attribute 'values'
+>>> Ninja.objects.filter(dojo = new_dojo3)
+<QuerySet [<Ninja: Ninja object (7)>, <Ninja: Ninja object (8)>, <Ninja: Ninja object (9)>]>
+>>> Ninja.objects.last()
+<Ninja: Ninja object (9)>
+>>> migrate
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'migrate' is not defined
+>>> make migrations
+  File "<console>", line 1
+    make migrations
+         ^
+SyntaxError: invalid syntax
+>>> python manage.py makemigrations
+  File "<console>", line 1
+    python manage.py makemigrations
+           ^
+SyntaxError: invalid syntax
+>>>
+

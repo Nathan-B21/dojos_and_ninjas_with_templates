@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <div class="d-flex">
+        <div class="row">
+            <div class="d-flex flex-column">
+                <h1>add a dojo</h1>
+                <form action="/processDojo" method='post'>
+                    {% csrf_token %}
+                    <div class="col-sm">
+                        
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" id="name" name="dojoName">
+    
+                    </div>
+                    <div class="col-sm">
+    
+                        <label for="city" class="form-label">City</label>
+                        <input type="text" id="city" name="city">
+    
+                        <div class="col-sm">
+    
+                            <label for="state" class="form-label">State</label>
+                            <input type="text" id="state" name="state">
+    
+                        </div>
+                        <div class="col-sm">
+    
+                            <input type="submit" class="button">
+                        </div>
+                </form>
+    
+    
+            </div>
+        </div>
+
+    </div>
+
+    
+    <div class="container">
+        <h1>add a ninja</h1>
+        <div class="d-flex flex-column">
+            
+            <form action="/processNinja" method='post'>
+                {% csrf_token %}
+                <div class="col-sm">
+                    
+                    <label for="fname">first name</label>
+                    <input type="text" id="fname" name="fname">
+                </div>
+                <div class="col-sm">
+
+                    <label for="lname" id = "lname" name = lname> Last Name</label>
+                    <input type="text" id="lname" name="lname">
+                </div>
+                <div class="col-sm">
+
+                    <label for="dojos"> Select a Dojo</label>
+
+                    <select name="dojos" id="dojos">
+                        {%for dojo in all_dojos %}
+                        <option value="{{dojo.id}}">{{dojo.name}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+                <div class="col-sm">
+                    
+                    <input type="submit" class="button">
+                </div>
+
+            </form>
+
+        </div>
+
+
+    </div>
+    <div class="container">
+        {% for dojo in all_dojos %}
+        <h3>Ninjas at the {{dojo.name}}</h3>
+        {% for ninja in dojo.ninjas.all %}
+        <p>{{ninja.first_name}}</p>
+        {%endfor%}
+        {%endfor%}
+
+
+    </div>
+
+
+
+
+
+
+
+
+</body>
+
+</html>
